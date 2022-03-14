@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.dial {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.dial::after {
+  position: absolute;
+  top: 5px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: black;
+  content: '';
+  cursor: grab;
+  pointer-events: none;
+}
