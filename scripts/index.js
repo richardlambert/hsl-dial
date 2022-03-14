@@ -2,7 +2,7 @@ const hueDial = document.querySelector('#hue');
 const satDial = document.querySelector('#sat');
 const lumDial = document.querySelector('#lum');
 
-const hsl = { h: 0, s: 0, l: 0 };
+const hsl = { h: 220, s: 100, l: 50 };
 
 const getCenter = (element) => {
   const { x, y, width, height } = element.getBoundingClientRect();
@@ -58,8 +58,11 @@ const handleInput = (e) => {
   );
 };
 
+hueDial.style.transform = 'rotate(220deg)';
 hueDial.addEventListener('mousedown', handleInput);
+satDial.style.transform = 'rotate(360deg)';
 satDial.addEventListener('mousedown', handleInput);
+lumDial.style.transform = 'rotate(180deg)';
 lumDial.addEventListener('mousedown', handleInput);
 
 const dispatchDialChangeEvent = (element) => {
@@ -76,3 +79,5 @@ document.addEventListener('dialchange', (e) => {
   hsl[e.detail.hsl] = e.detail.hsl === 'h' ? e.detail.angle : (Number.parseInt(e.detail.angle) / 360) * 100;
   document.body.style.backgroundColor = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
 });
+
+document.body.style.backgroundColor = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
