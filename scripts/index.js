@@ -1,6 +1,7 @@
 const hueDial = document.querySelector('#hue');
 const satDial = document.querySelector('#sat');
 const lumDial = document.querySelector('#lum');
+const hslValue = document.querySelector('.hsl-value');
 
 const hsl = { h: 220, s: 100, l: 50 };
 
@@ -76,8 +77,11 @@ const dispatchDialChangeEvent = (element) => {
 };
 
 document.addEventListener('dialchange', (e) => {
-  hsl[e.detail.hsl] = e.detail.hsl === 'h' ? e.detail.angle : (Number.parseInt(e.detail.angle) / 360) * 100;
-  document.body.style.backgroundColor = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+  hsl[e.detail.hsl] =
+    e.detail.hsl === 'h' ? Number.parseInt(e.detail.angle) : Math.floor((Number.parseInt(e.detail.angle) / 360) * 100);
+  const color = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+  document.body.style.backgroundColor = color;
+  hslValue.textContent = color;
 });
 
 document.body.style.backgroundColor = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
